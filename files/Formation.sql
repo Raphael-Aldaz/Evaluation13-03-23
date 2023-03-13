@@ -29,6 +29,22 @@ CREATE TABLE T_User(
 	pswdUser VARCHAR(30) NOT NULL
 ) ENGINE = InnoDB;
 
+CREATE TABLE T_Basket(
+	idBasket int(4) PRIMARY KEY AUTO_INCREMENT,
+	amount FLOAT NOT NULL,
+	dateOrder DATE NOT NULL DEFAULT CURRENT_TIMESTAMP() ,
+	idCustomer int(4) NOT NULL
+) ENGINE = InnoDB;
+
+CREATE TABLE T_Order_Formation(
+	idOrderFormatin int(4) PRIMARY KEY AUTO_INCREMENT,
+	idFormation int(4) NOT NULL,
+	FOREIGN KEY(idFormation) REFERENCES T_Formation(idFormation),
+	quantity FLOAT NOT NULL,
+	unitaryPrice FLOAT NOT NULL,
+	idBasket int(4) ,
+	FOREIGN KEY (idBasket) REFERENCES T_Basket(idBasket)
+) ENGINE = InnoDB;
 
 INSERT INTO T_Category(nameCategory, descriptionCategory) VALUES('Developpement Web', 'Creation et développement de site internet');
 INSERT INTO T_Category(nameCategory, descriptionCategory) VALUES('Web Design', 'Design de site internet');

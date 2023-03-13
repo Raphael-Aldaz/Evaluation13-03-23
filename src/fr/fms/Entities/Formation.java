@@ -9,7 +9,7 @@ public class Formation {
 	private String statusFormation;
 	private double priceFormation;
 	private int  idCategory;
-	
+	private int quantity=1;
 	private String resultNameCategory;
 	private String resultDescriptionCategory;
 	
@@ -103,6 +103,14 @@ public class Formation {
 	}
 	public void setIdCategory(int idCategory) {
 		this.idCategory = idCategory;
+	}
+	public int getQuantity() {
+		return quantity;
+	}
+
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 //	
 //	@Override
