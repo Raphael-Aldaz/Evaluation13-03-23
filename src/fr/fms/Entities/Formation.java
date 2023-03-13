@@ -1,7 +1,7 @@
 package fr.fms.Entities;
 
 public class Formation {
-
+	
 	private int idFormation;
 	private String nameFormation;
 	private String descriptionFormation;
@@ -9,6 +9,9 @@ public class Formation {
 	private String statusFormation;
 	private double priceFormation;
 	private int  idCategory;
+	
+	private String resultNameCategory;
+	private String resultDescriptionCategory;
 	
 	//public static final int MAX_STRING_LENGTH = 42;
 	public Formation(int idFormation, String nameFormation, String descriptionFormation, int durationFormation,
@@ -31,6 +34,30 @@ public class Formation {
 		this.durationFormation = durationFormation;
 		this.statusFormation = statusFormation;
 		this.priceFormation = priceFormation;
+		this.resultNameCategory = resultNameCategory;
+		this.resultDescriptionCategory =  resultDescriptionCategory;
+
+	}
+	public Formation(int idFormation, String nameFormation, String descriptionFormation, int durationFormation,
+			String statusFormation, double priceFormation) {
+		this.idFormation = idFormation;
+		this.nameFormation = nameFormation;
+		this.descriptionFormation = descriptionFormation;
+		this.durationFormation = durationFormation;
+		this.statusFormation = statusFormation;
+		this.priceFormation = priceFormation;
+
+
+	}
+	public Formation( String nameFormation, String descriptionFormation, int durationFormation,
+			String statusFormation, double priceFormation, int idCategory ) {
+		this.nameFormation = nameFormation;
+		this.descriptionFormation = descriptionFormation;
+		this.durationFormation = durationFormation;
+		this.statusFormation = statusFormation;
+		this.priceFormation = priceFormation;
+		this.idCategory = idCategory;
+
 
 	}
 	
@@ -94,6 +121,6 @@ public class Formation {
 	@Override
 	public String toString() {
 		return  idFormation + " ---- "  + nameFormation + " ---- "+ descriptionFormation + " ---- " + durationFormation + " ---- "
-				+ statusFormation + " ---- " + priceFormation +  "€ \n";
+				+ statusFormation + " ---- " + priceFormation +  "€ ----  " + resultNameCategory +"---- "+ resultDescriptionCategory +" \n";
 	}
 }
