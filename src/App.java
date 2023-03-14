@@ -13,8 +13,9 @@ public class App {
 	private static Joblmpl job = new Joblmpl(); 
 	private static Authentification auth = new Authentification();
 	public static void main(String[] args) {
-		int userStatus = 0;
-		try (Scanner scan = new Scanner(System.in)) {
+	int userStatus = 0;
+	Scanner scan = new Scanner(System.in);
+		try {
 			System.out.println("Bienvenue dans notre école ! Voici les formations disponnible !");
 			formationDao.readAll().forEach(System.out::println);
 			 int choice =0;
@@ -102,8 +103,6 @@ public class App {
 				}
 			 }
 		}
-		
-		
 	}
 	
 	public static void displayMainMenu() {
