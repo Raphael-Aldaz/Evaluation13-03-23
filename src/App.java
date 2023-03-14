@@ -3,17 +3,22 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import fr.fms.Entities.Formation;
+import fr.fms.Entities.User;
 import fr.fms.Job.Joblmpl;
 import fr.fms.authentification.Authentification;
 import frm.fms.Dao.DaoFormations;
+import frm.fms.Dao.DaoUser;
 
 public class App {
 	private static DaoFormations formationDao = new DaoFormations();
 	private static Joblmpl job = new Joblmpl(); 
+	private static DaoUser userDao = new DaoUser();
 	private static Authentification auth = new Authentification();
+	private static int userStatus = 0;
+	private static Scanner scan = new Scanner(System.in);
 	public static void main(String[] args) {
-	int userStatus = 0;
-	try (Scanner scan = new Scanner(System.in)) {
+	
+	try  {
 		System.out.println("Bienvenue dans notre école ! Voici les formations disponnible !");
 		formationDao.readAll().forEach(System.out::println);
 		 int choice =0;
@@ -65,34 +70,13 @@ public class App {
 				job.getOrderList().forEach(x -> System.out.println(x.getIdFormation() + "--- " + x.getNameFormation() + " ---" + x.getDescriptionFormation()+ " ----" + x.getQuantity() + " ---" + x.getPriceFormation()));
 				break;
 			case 8: 
-				System.out.println("Vous voulez valider votre parnier ? o/n ");
-				String validate = scan.next();
-				if(userStatus != 0) {
-					System.out.println("Souhaitez vous vous déconnecter ? Oui/Non");
-					String response = scan.next();
-					if(response.equalsIgnoreCase("Oui")) {
-						System.out.println("A bientôt ");
-						userStatus = 0;
-					}				
-				}
-				else {
+				if(userStatus ==0 ) {
 					System.out.println("Pour valider votre panier vous de vez vous connecter \n"
 							+"1- Connectez vous : \n"
 							+"2- Creation d'un compte \n");
 					int connexion = scan.nextInt();
 					if(connexion == 1) {
-						System.out.println("saisissez votre login : ");
-						String log = scan.next();
-						System.out.println("saisissez votre password : ");
-						String pwd = scan.next();
-						
-						int id = auth.existUser(log,pwd);
-						if(id > 0)	{
-							userStatus = id;
-						}
-						else {
-							System.out.println("login ou password incorrect");
-						}
+						connection();
 					} else {
 						
 							System.out.println("Saississez votre login");
@@ -106,7 +90,12 @@ public class App {
 								System.out.println("Utilisateur créé");
 							}
 					}
-				}
+			} else {
+				System.out.println();
+			}
+				break;
+			case 9:
+				connection();
 			}
 		 }
 	} catch(Exception e){
@@ -136,34 +125,27 @@ public class App {
 				+ "----" + x.getStatusFormation() 
 				+ "---" + x.getPriceFormation() +"€ \n"));
 	}
-//	public static void newUser() {
-//		System.out.println("saisissez un login :");
-//		String login = scan.next();			
-//		int id = authenticate.existUser(login);	
-//		if(id == 0) { 
-//			System.out.println("saisissez votre password :");
-//			String password = scan.next();
-//			authenticate.addUser(login,password);		
-//			System.out.println("Ne perdez pas ces infos de connexion...");
-//			stop(2);
-//			System.out.println("création de l'utilisateur terminé, merci de vous connecter");
-//		}
-//		else	System.out.println("Login déjà existant en base, veuillez vous connecter");
-//	}
 	
-//	private static void displayArticlesByCategoryId( int choiceCat) {
-//		System.out.println("saisissez l'id de la catégorie concerné");
-//		
-//	
-//		
-//			System.out.printf("              AFFICHAGE PAR CATEGORIE    %n");
-//			
-//			System.out.printf("------------------------------------------------------------%n");
-//			System.out.printf("%-15s | %-15s | %-15s | %-15s | %-15s | %-15s %n");
-//			System.out.printf("------------------------------------------------------------%n");
-//			formationDao.readAllByCategory(choiceCat).forEach( a -> System.out.printf("%-15s | %-15s | %-15s | %-15s | %-15s | %-15s%n",a.getIdFormation(),a.getNameFormation(),a.getDescriptionFormation(), a.getDurationFormation(),a.getStatusFormation(), a.getPriceFormation()));
-//	
-//	}
+	public static void connection() {
+		System.out.println("saisissez votre login : ");
+		String log = scan.next();
+		System.out.println("saisissez votre password : ");
+		String pwd = scan.next();
+		
+		int id = auth.existUser(log,pwd);
+		if(id > 0)	{
+			
+			userStatus = id;
+			User a = userDao.read(userStatus);
+			System.out.println("Bonjour "+ a.getLoginUser() + " !");
+		}
+		else {
+			System.out.println("login ou password incorrect");
+		}
+	}
+
+	
+
 
 
 }

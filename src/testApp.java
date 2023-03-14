@@ -28,8 +28,6 @@ public class testApp {
 		//categoryDao.update(cat);
 		//categoryDao.delete(cat);
 		
-		Customer a = new Customer("Test", "Test", "Test", "Test", "Test", 1);
-		System.out.println(customerDao.readAll()); 
 		
 		
 	}

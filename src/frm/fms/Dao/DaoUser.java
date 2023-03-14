@@ -26,7 +26,14 @@ public class DaoUser implements Dao<User> {
 
 	@Override
 	public User read(int id) {
-		// TODO Auto-generated method stub
+		try (Statement statement = connection.createStatement()){
+			String str = "SELECT * FROM T_User where IdUser=" + id + ";";									
+			ResultSet rs = statement.executeQuery(str);
+			if(rs.next()) 
+				return new User(rs.getInt(1) , rs.getString(2) , rs.getString(3));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 	
 		return null;
 	}
 

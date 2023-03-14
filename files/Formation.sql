@@ -77,3 +77,4 @@ INSERT INTO T_Formation (nameFormation, descriptionFormation, durationFormation,
 
 INSERT INTO T_USER(loginUser, pswdUser) VALUES ('ARaphael','fms2023');
 
+ALTER TABLE T_Basket ADD FOREIGN KEY(idCustomer) REFERENCES T_Customers(idCustomer);
