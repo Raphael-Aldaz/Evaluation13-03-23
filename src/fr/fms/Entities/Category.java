@@ -10,6 +10,10 @@ public class Category {
 		this.nameCategory = nameCategory;
 		this.descriptionCategory = descriptionCategory;
 	}
+	public Category(String nameCategory, String descriptionCategory) {
+		this.nameCategory = nameCategory;
+		this.descriptionCategory = descriptionCategory;
+	}
 	@Override
 	public String toString() {
 		return "DaoCategory [idCategory=" + idCategory + ", nameCategory=" + nameCategory + ", descriptionCategory="

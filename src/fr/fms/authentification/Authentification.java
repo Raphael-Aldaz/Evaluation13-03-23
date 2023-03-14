@@ -11,4 +11,8 @@ public class Authentification {
 		if(user != null )	return user.getIdUser();
 		return 0;
 	}
+	public boolean existLogin(String log) {
+		if(userDao.findUserByLog(log)) return true;
+		return false;
+	}
 }

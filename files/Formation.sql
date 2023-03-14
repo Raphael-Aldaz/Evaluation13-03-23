@@ -46,6 +46,17 @@ CREATE TABLE T_Order_Formation(
 	FOREIGN KEY (idBasket) REFERENCES T_Basket(idBasket)
 ) ENGINE = InnoDB;
 
+CREATE TABLE T_Customers(
+	idCustomer int(4) PRIMARY KEY AUTO_INCREMENT,
+	nameCustomer VARCHAR(30) NOT NULL,
+	firstNameCustomer VARCHAR (30) NOT NULL,
+	emailCustomer VARCHAR(30) NOT NULL,
+	adressCustomer VARCHAR(70) NOT NULL,
+	phoneCustomer VARCHAR(30) NOT NULL,
+	idUser int(4) NOT NULL,
+	FOREIGN KEY (idUser) REFERENCES T_User(idUser)
+) ENGINE = InnoDB;
+
 INSERT INTO T_Category(nameCategory, descriptionCategory) VALUES('Developpement Web', 'Creation et développement de site internet');
 INSERT INTO T_Category(nameCategory, descriptionCategory) VALUES('Web Design', 'Design de site internet');
 INSERT INTO T_Category(nameCategory, descriptionCategory) VALUES('Sys Admin', 'Administration de systeme informatique');

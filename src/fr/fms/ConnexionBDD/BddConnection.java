@@ -19,7 +19,6 @@ public class BddConnection {
 	Properties props = null;
 	
 	try {
-		System.out.println("test1");
 		CreateConfigFile.CreateConf();;
 		 props = readConfigFile("files/config.properties");
 	} catch (IOException e) {

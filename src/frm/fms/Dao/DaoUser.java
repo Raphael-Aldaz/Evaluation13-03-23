@@ -12,7 +12,7 @@ public class DaoUser implements Dao<User> {
 
 	@Override
 	public boolean create(User obj) {
-		String queryInsert = "INSERT INTO T_Users (Login,Password) VALUES ("+obj.getLoginUser()+"," + obj.getPswdUser() +")";
+		String queryInsert = "INSERT INTO T_User (loginUser,pswdUser) VALUES ('"+obj.getLoginUser()+"','" + obj.getPswdUser() +"')";
 		try(Statement statement = connection.createStatement()){
 			PreparedStatement myQuery = connection.prepareStatement(queryInsert);
 				try(ResultSet resultSet = myQuery.executeQuery()){
@@ -59,5 +59,23 @@ public class DaoUser implements Dao<User> {
 			e.printStackTrace();
 		} 	
 		return null;
+	}
+	
+	public boolean findUserByLog(String log) {
+		String findQuery = "SELECT loginUser FROM T_User WHERE loginUser = '" + log +"';";
+		try(Statement statement = connection.createStatement()){
+			PreparedStatement myQuery = connection.prepareStatement(findQuery);
+			try (ResultSet resulSet = myQuery.executeQuery()){
+				
+				if(resulSet.next()) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+			return false;
 	}
 }

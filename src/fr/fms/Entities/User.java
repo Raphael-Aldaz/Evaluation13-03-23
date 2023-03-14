@@ -11,6 +11,16 @@ public class User {
 		this.pswdUser = pswdUser;
 	}
 	
+	public User(String log, String pswd) {
+		this.loginUser = log;
+		this.pswdUser = pswd;
+		
+	}
+
+	public User(String log) {
+		this.loginUser = log;
+	}
+
 	public int getIdUser() {
 		return idUser;
 	}
