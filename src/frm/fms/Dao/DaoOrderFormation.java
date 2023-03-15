@@ -12,7 +12,7 @@ public class DaoOrderFormation implements Dao<OrderFormation> {
 
 	@Override
 	public boolean create(OrderFormation obj) {
-		String queryInsert = "INSERT INTO T_Order_Formation (idFormation, quantity, unitaryPrice) VALUES(" + obj.getIdArticle() +", "+ obj.getQuantity() +", "+ obj.getUnitaryPrice() +");";
+		String queryInsert = "INSERT INTO T_Order_Formation (idFormation, quantity, unitaryPrice, idBasket) VALUES(" + obj.getIdArticle() +", "+ obj.getQuantity() +", "+ obj.getUnitaryPrice() + "," + obj.getIdBasket() +");";
 		try(Statement statement = connection.createStatement()){
 		PreparedStatement myQuery = connection.prepareStatement(queryInsert);
 			try(ResultSet resultSet = myQuery.executeQuery()){

@@ -82,5 +82,22 @@ public class DaoCustomer implements Dao<Customer> {
 		}
 		return customers;
 	}
+	
+	public Customer findCustomerByEmail(String email) {
+		String strSql = "SELECT * FROM T_Customers where emailCustomer=?;";
+		try(PreparedStatement ps = connection.prepareStatement(strSql)){
+			ps.setString(1, email);
+			try(ResultSet resultSet = ps.executeQuery()){ 		
+				if(resultSet.next()) {
+					return new Customer(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),
+							resultSet.getString(5),resultSet.getString(6),resultSet.getInt(7));	
+				}
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		return null;
+	}
 
 }

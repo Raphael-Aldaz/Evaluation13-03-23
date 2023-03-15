@@ -15,6 +15,12 @@ public class Basket {
 		this.idCustomer = idCustomer;
 	}
 	
+	public Basket(double amountBasket, Date dateBasket, int idCustomer) {
+		this.amountBasket = amountBasket;
+		this.dateBasket = dateBasket;
+		this.idCustomer = idCustomer;
+	}
+
 	public int getIdBasket() {
 		return idBasket;
 	}

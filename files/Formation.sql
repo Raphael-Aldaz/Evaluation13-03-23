@@ -42,7 +42,7 @@ CREATE TABLE T_Order_Formation(
 	FOREIGN KEY(idFormation) REFERENCES T_Formation(idFormation),
 	quantity FLOAT NOT NULL,
 	unitaryPrice FLOAT NOT NULL,
-	idBasket int(4) ,
+	idBasket int(4) NOT NULL ,
 	FOREIGN KEY (idBasket) REFERENCES T_Basket(idBasket)
 ) ENGINE = InnoDB;
 

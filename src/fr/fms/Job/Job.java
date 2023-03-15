@@ -10,5 +10,6 @@ public  void addFormation(Formation formation);
 public void removeFormation(int id);
 public ArrayList<Formation> getOrderList();
 public void newUser(String log, String pswd);
+public int order(int idUser);
 
 }

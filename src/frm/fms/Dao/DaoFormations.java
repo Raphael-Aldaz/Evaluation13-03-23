@@ -71,7 +71,7 @@ public class DaoFormations implements Dao<Formation> {
 	@Override
 	public ArrayList<Formation> readAll() {
 		ArrayList<Formation> formationList = new ArrayList<>();
-		String querySql = "SELECT idFormation, nameFOrmation, descriptionFormation, durationFormation, statusFormation, priceFormation, nameCategory, descriptionCategory FROM T_Formation INNER JOIN T_Category on T_Formation.idCategory = T_Category.idCategory";
+		String querySql = "SELECT idFormation, nameFOrmation, descriptionFormation, durationFormation, statusFormation, priceFormation, nameCategory, descriptionCategory FROM T_Formation INNER JOIN T_Category on T_Formation.idCategory = T_Category.idCategory ORDER BY idFormation  ";
 		try(Statement statement = connection.createStatement()) {
 			PreparedStatement myQuery = connection.prepareStatement(querySql);
 			try(ResultSet resultSet = myQuery.executeQuery()){
