@@ -82,6 +82,11 @@ public class DaoCustomer implements Dao<Customer> {
 		}
 		return customers;
 	}
+	/**
+	 * Serching a customer in my Table Customers in the database with the email
+	 * @param email
+	 * @return
+	 */
 	
 	public Customer findCustomerByEmail(String email) {
 		String strSql = "SELECT * FROM T_Customers where emailCustomer=?;";

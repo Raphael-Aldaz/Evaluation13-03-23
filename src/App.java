@@ -73,7 +73,7 @@ public class App {
 				if(formation != null) {
 					job.addFormation(formation);
 				} else {
-					System.out.println(COLOR_RED + "The formation doesn't exist !");
+					System.out.println(COLOR_RED + "The formation doesn't exist !"+COLOR_RESET_BG);
 				}
 				break;
 				
@@ -85,15 +85,7 @@ public class App {
 				
 			case 7 :
 				System.out.println("CONTENU DU PANIER :");
-				String titles = centerString("Id formation") + centerString("Nom de la formation") + 
-						centerString("Description de la formation")  + centerString("Prix de la formation") + centerString("QUANTITE");
-				System.out.println(titles);
-				
-				job.getOrderList().forEach(x -> System.out.println(x.getIdFormation() + "--- " 
-																	+ x.getNameFormation() + " ---" 
-																	+ x.getDescriptionFormation()+ " ----" 
-																	+ x.getQuantity() + " ---" 
-																	+ x.getPriceFormation()));
+				displayBasket(job.getOrderList());
 				System.out.println("MONTANT DE VOTRE PANIER " + job.getTotal()+"€ \n");
 				break;
 				
@@ -126,9 +118,7 @@ public class App {
 								System.out.println("Votre commande a bien été validé, voici votre numéro de commande : "+ idBasket);
 								job.clearBasket();
 							}
-							
 						}
-						
 					}
 					break;
 					
@@ -194,7 +184,7 @@ public class App {
 			System.out.println("Bonjour "+ a.getLoginUser() + " !");
 		}
 		else {
-			System.out.println("login ou password incorrect");
+			System.out.println(COLOR_RED +"login ou password incorrect"+ COLOR_RESET_BG);
 		}
 	}
 	public static int newCustomer(int idUser) {
@@ -245,6 +235,15 @@ public class App {
 		list.forEach(x ->
 		System.out.printf(COLOR_BLACK +"|%-10s |%-15s |%-45s |%-10s |%-10s |%12s |%n",
 				x.getIdFormation()%2 ==0 ? COLOR_GREEN_BG + x.getIdFormation()  : COLOR_WHITE_BG + x.getIdFormation(), x.getNameFormation(), x.getDescriptionFormation(), x.getDurationFormation() +" jours", x.getStatusFormation(), x.getPriceFormation()+"€" 	+ COLOR_RESET_BG));
+		System.out.printf("----------------------------------------------------------------------------------------------------------%n");
+	}
+	
+	public static void displayBasket(ArrayList<Formation> list) {
+		System.out.printf( "|%-5s |%-15s |%-45s  |%-5s |%-8s |%n", "Id","NAME","DESCRIPTION","QUANTITE", "PRIX" );
+		System.out.printf("----------------------------------------------------------------------------------------------------------%n");
+		list.forEach(x ->
+		System.out.printf(COLOR_BLACK +"|%-10s |%-15s |%-45s |%-10s |%-10s |%n",
+				x.getIdFormation()%2 ==0 ? COLOR_GREEN_BG + x.getIdFormation()  : COLOR_WHITE_BG + x.getIdFormation(), x.getNameFormation(), x.getDescriptionFormation(), x.getQuantity() , x.getPriceFormation()+"€" 	+ COLOR_RESET_BG));
 		System.out.printf("----------------------------------------------------------------------------------------------------------%n");
 	}
 
